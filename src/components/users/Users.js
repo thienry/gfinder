@@ -9,19 +9,13 @@ const Users = ({ users, loading }) => {
     return <Spinner />;
   } else {
     return (
-      <div style={userStyle}>
+      <div className="media-grid">
         {users.map(user => (
           <UserItem key={user.id} user={user} />
         ))}
       </div>
     );
   }
-};
-
-const userStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gridGap: "1rem"
 };
 
 Users.propTypes = {
