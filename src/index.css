@@ -498,8 +498,15 @@ table th {
     text-align: center;
     justify-content: center;
   }
+
   .footer {
-    padding: 120px auto;
+    height: 80px;
+    margin-top: 30px;
+    padding-top: 30px;
+  }
+
+  .container {
+    min-height: calc(100vh - 211px);
   }
 }
 
@@ -509,9 +516,12 @@ table th {
   }
 
   .footer {
-    padding: 120px auto;
+    height: 80px;
+    margin-top: 30px;
+    padding-top: 30px;
   }
-  .footer span {
-    display: inline-block;
+
+  .container {
+    min-height: calc(100vh - 211px);
   }
 }
