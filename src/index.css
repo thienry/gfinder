@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 /* Global Styles */
 :root {
@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -43,6 +43,7 @@ img {
 /* Utilities */
 .container {
   max-width: 1100px;
+  min-height: calc(100vh - 186px);
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
@@ -76,6 +77,14 @@ img {
 
 .text-dark {
   color: var(--dark-color);
+}
+
+.text-light {
+  color: aliceblue;
+}
+
+.text-light:hover {
+  color: #f4f4f4;
 }
 
 .text-success {
@@ -318,10 +327,10 @@ input {
   color: #888;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='date'],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
 select,
 textarea {
   display: block;
@@ -331,7 +340,7 @@ textarea {
   border: 1px solid #ccc;
 }
 
-input[type='submit'],
+input[type="submit"],
 button {
   font: inherit;
 }
@@ -404,7 +413,7 @@ table th {
 .loader:after {
   position: absolute;
   top: 0;
-  content: '';
+  content: "";
 }
 
 .loader:before {
@@ -441,6 +450,13 @@ table th {
     box-shadow: 0 -2em;
     height: 5em;
   }
+}
+
+/* Footer */
+.footer {
+  height: 80px;
+  margin-top: 30px;
+  padding-top: 30px;
 }
 
 /* Mobile Styles */

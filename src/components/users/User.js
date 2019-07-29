@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Spinner from "../layout/Spinner";
+import Repos from "../repos/Repos";
 
 class User extends Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class User extends Component {
   static propTypes = {
     loading: PropTypes.bool,
     user: PropTypes.object.isRequired,
+    repos: PropTypes.array.isRequired,
     getUser: PropTypes.func.isRequired,
     getUserRepos: PropTypes.func.isRequired,
   };
@@ -34,7 +36,7 @@ class User extends Component {
       company
     } = this.props.user;
 
-    const { loading } = this.props;
+    const { loading, repos } = this.props;
 
     if (loading) return <Spinner />;
 
@@ -112,6 +114,8 @@ class User extends Component {
           </div>
           <div className="badge badge-dark">Gists Públicas: {public_gists}</div>
         </div>
+
+        <Repos repos={repos} />
       </Fragment>
     );
   }
