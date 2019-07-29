@@ -1,9 +1,19 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+import Spinner from "../layout/Spinner";
 
 class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
   }
+
+  static propTypes = {
+    loading: PropTypes.bool,
+    user: PropTypes.object.isRequired,
+    getUser: PropTypes.func.isRequired
+  };
 
   render() {
     const {
@@ -16,14 +26,92 @@ class User extends Component {
       html_url,
       followers,
       following,
-      publicc_repos,
+      public_repos,
       public_gists,
-      hireable
+      hireable,
+      company
     } = this.props.user;
 
     const { loading } = this.props;
 
-    return <div>{name}</div>;
+    if (loading) return <Spinner />;
+
+    return (
+      <Fragment>
+        <Link to="/" className="btn btn-light">
+          Voltar à procurar
+        </Link>
+        Contratável:{" "}
+        {hireable ? (
+          <i className="fas fa-check text-success" />
+        ) : (
+          <i className="fas fa-times-circle text-danger" />
+        )}
+        <div className="card grid-2">
+          <div className="all-center">
+            <img
+              src={avatar_url}
+              className="round-img"
+              alt={name}
+              style={{ width: "150px" }}
+            />
+            <h1>{name}</h1>
+            <p>Localização: {location}</p>
+          </div>
+          <div>
+            {bio && (
+              <Fragment>
+                <h3>Bio</h3>
+                <p>{bio}</p>
+              </Fragment>
+            )}
+            <a
+              href={html_url}
+              className="btn btn-dark my-1"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {" "}
+              Visitar perfil do Github
+            </a>
+            <ul>
+              <li>
+                {login && (
+                  <Fragment>
+                    <strong>Nome de Usuário: </strong> {login}
+                  </Fragment>
+                )}
+              </li>
+              <li>
+                {company && (
+                  <Fragment>
+                    <strong>Empresa: </strong> {company}
+                  </Fragment>
+                )}
+              </li>
+              <li>
+                {blog && (
+                  <Fragment>
+                    <strong>Website: </strong>{" "}
+                    <a href={blog} target="_blank" rel="noopener noreferrer">
+                      {blog}
+                    </a>
+                  </Fragment>
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="card text-center">
+          <div className="badge badge-primary">Seguidores: {followers}</div>
+          <div className="badge badge-success">Seguindo: {following}</div>
+          <div className="badge badge-danger">
+            Repos Públicos: {public_repos}
+          </div>
+          <div className="badge badge-dark">Gists Públicas: {public_gists}</div>
+        </div>
+      </Fragment>
+    );
   }
 }
 
